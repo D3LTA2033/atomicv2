@@ -9,11 +9,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background: transparent;
+            background: #0a0a0a;
             color: #fff;
             min-height: 100vh;
             position: relative;
@@ -27,10 +27,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif');
+            background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3');
             background-size: cover;
             background-position: center;
-            opacity: 1;
+            opacity: 0.3;
             pointer-events: none;
             z-index: -1;
         }
@@ -44,70 +44,92 @@
         }
 
         .logo {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             margin: 0 auto 2rem;
             display: block;
-            opacity: 0;
+            opacity: 1;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
+            to { box-shadow: 0 0 50px rgba(0, 255, 255, 0.8); }
         }
 
         .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .nav-btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            background: rgba(42, 42, 74, 0.8);
-            color: #fff;
-            border-radius: 5px;
+            padding: 1rem 2.5rem;
+            border: 2px solid #00ffff;
+            background: transparent;
+            color: #00ffff;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-btn:hover {
-            background: rgba(58, 58, 90, 0.8);
-            transform: translateY(-2px);
-        }
-
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .page.active {
-            display: block;
+            background: #00ffff;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
         }
 
         .plan-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
             margin: 2rem 0;
         }
 
         .plan-card {
-            background: rgba(42, 42, 74, 0.8);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            background: rgba(20, 20, 30, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .plan-card:hover::before {
+            opacity: 0.1;
         }
 
         .plan-card.selected {
-            border-color: #9b4dff;
-            box-shadow: 0 0 20px rgba(155, 77, 255, 0.3);
+            border-color: #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
         }
 
         .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .plan-header {
@@ -116,8 +138,10 @@
         }
 
         .plan-price {
-            font-size: 2rem;
-            color: #9b4dff;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 1rem 0;
         }
 
@@ -126,89 +150,132 @@
         }
 
         .plan-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(58, 58, 90, 0.8);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li::before {
+            content: '⚡';
+            color: #00ffff;
         }
 
         .plan-features li:hover {
-            color: #9b4dff;
+            color: #00ffff;
             transform: translateX(10px);
         }
 
         .payment-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .payment-btn {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .payment-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .paypal { background: rgba(0, 112, 186, 0.8); color: white; }
-        .cashapp { background: rgba(0, 214, 50, 0.8); color: white; }
-        .discord { background: rgba(114, 137, 218, 0.8); color: white; }
+        .paypal { 
+            background: linear-gradient(45deg, #0070ba, #1546a0);
+            color: white;
+        }
+        .cashapp { 
+            background: linear-gradient(45deg, #00d632, #00b329);
+            color: white;
+        }
+        .discord { 
+            background: linear-gradient(45deg, #7289da, #5865f2);
+            color: white;
+        }
 
         .social-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .social-card {
-            background: rgba(42, 42, 74, 0.8);
-            padding: 2rem;
-            border-radius: 10px;
+            background: rgba(20, 20, 30, 0.9);
+            padding: 2.5rem;
+            border-radius: 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            transform: translateY(-10px);
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, #9b4dff, #ff4dff);
+            margin-bottom: 2.5rem;
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
 
-        h2 { color: #9b4dff; }
+        h2 { 
+            color: #00ffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
 
-        .mouse-line {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Particle effect */
+        .particles {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 0;
-            background: rgba(155, 77, 255, 0.2);
-            transform-origin: left center;
         }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles-js"></div>
     <div class="container">
-        <img src="https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif" alt="Logo" class="logo">
+        <img src="https://cdn.discordapp.com/attachments/1234567890/atomic-logo.png" alt="Atomic Logo" class="logo">
         <h1>Atomic Prices</h1>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="showPage('pricing')">Pricing</button>
