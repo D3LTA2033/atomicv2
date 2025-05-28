@@ -5,121 +5,211 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atomic Prices</title>
     <style>
-        /* ... existing styles remain the same ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: #2a2a2a;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .plan-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-card {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4d4d, #ff8533);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            color: #ff4d4d;
+            margin: 1rem 0;
+        }
+
+        .plan-features {
+            list-style: none;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+
+        .plan-features li:hover {
+            color: #ff4d4d;
+            transform: translateX(10px);
+        }
+
+        .extra-features {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 1rem;
+            color: #ff4d4d;
+        }
+
+        .payment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .payment-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .payment-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .paypal {
+            background: #0070ba;
+            color: white;
+        }
+
+        .cashapp {
+            background: #00d632;
+            color: white;
+        }
+
+        .discord {
+            background: #7289da;
+            color: white;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff4d4d, #ff8533);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            color: #ff4d4d;
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="nav-buttons">
-            <button class="nav-btn" onclick="showPage(1)">Prices</button>
-            <button class="nav-btn" onclick="showPage(2)">Socials</button>
-        </div>
-
-        <div id="page1" class="page active">
-            <h1>Atomic C2 Plans</h1>
-            <div class="plan-container">
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h2>Basic Plan</h2>
-                        <div class="plan-price">$50 USD/month</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>1 Concurrent Connection</li>
-                        <li>60 seconds Duration</li>
-                        <li>Basic Command Features</li>
-                        <li>Standard Support</li>
-                        <li>Basic Analytics</li>
-                        <li>Email Support</li>
-                        <li>Monthly Updates</li>
-                    </ul>
-                </div>
-
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h2>Premium Plan</h2>
-                        <div class="plan-price">$100 USD/month</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>2 Concurrent Connections</li>
-                        <li>120 seconds Duration</li>
-                        <li>Advanced Command Features</li>
-                        <li>Priority Support</li>
-                        <li>Advanced Analytics</li>
-                        <li>24/7 Discord Support</li>
-                        <li>Weekly Updates</li>
-                        <li>Custom Scripts</li>
-                        <li>API Access</li>
-                    </ul>
-                </div>
-
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h2>Ultimate Plan</h2>
-                        <div class="plan-price">$200 USD/month</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>5 Concurrent Connections</li>
-                        <li>300 seconds Duration</li>
-                        <li>All Premium Features</li>
-                        <li>VIP Support</li>
-                        <li>Real-time Analytics</li>
-                        <li>24/7 Priority Support</li>
-                        <li>Daily Updates</li>
-                        <li>Custom Development</li>
-                        <li>Full API Access</li>
-                        <li>Dedicated Manager</li>
-                        <li>Early Access Features</li>
-                        <li>Custom Integration</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="extra-features">
-                <h2>Extra Add-ons</h2>
-                <ul class="plan-features">
-                    <li>+1 Concurrent Connection ~ $10 USD/month</li>
-                    <li>+60 seconds Duration ~ $10 USD/month</li>
-                    <li>+Raw Data Access ~ $30 USD/month</li>
-                    <li>+Custom Script Development ~ $50 USD/month</li>
-                    <li>+Priority Support ~ $20 USD/month</li>
-                    <li>+API Integration ~ $40 USD/month</li>
-                </ul>
-                <p class="note">ALL PLANS INCLUDE SETUP TUTORIAL, COMPREHENSIVE DOCUMENTATION, AND 24/7 SUPPORT</p>
-            </div>
-
-            <div class="payment-buttons">
-                <button class="payment-btn paypal" onclick="window.open('https://paypal.com/your-link', '_blank')">PayPal</button>
-                <button class="payment-btn cashapp" onclick="window.open('https://cash.app/your-link', '_blank')">CashApp</button>
-                <button class="payment-btn discord" onclick="window.open('https://discord.gg/your-invite', '_blank')">Discord</button>
-            </div>
-        </div>
-
-        <div id="page2" class="page">
-            <h1>Social Media</h1>
-            <div class="social-links">
-                <div class="social-card" onclick="window.open('https://discord.gg/your-invite', '_blank')">
-                    <h3>Discord</h3>
-                    <p>Join our community</p>
-                </div>
-                <div class="social-card" onclick="window.open('https://instagram.com/your-username', '_blank')">
-                    <h3>Instagram</h3>
-                    <p>Follow us</p>
-                </div>
-                <div class="social-card" onclick="window.open('https://snapchat.com/add/your-username', '_blank')">
-                    <h3>Snapchat</h3>
-                    <p>Add us</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showPage(pageNum) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('page' + pageNum).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+// ... rest of the HTML remains the same ...
