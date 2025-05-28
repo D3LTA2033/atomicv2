@@ -14,7 +14,8 @@
         }
 
         body {
-            background: #0a0a0a;
+            background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif?ex=683844f9&is=6836f379&hm=2ecb083f88b0cb0fa39c987dd9a65376d873673123f2dcc685d5b68a470f4786&=') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             min-height: 100vh;
             position: relative;
@@ -24,6 +25,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: url('https://cdn.discordapp.com/banners/1289619013672108165/a_59f657e051661a0b90b34915ee38280b.gif?size=2048') no-repeat center center;
+            background-size: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
         }
 
         .section-title {
@@ -217,6 +230,7 @@
 </head>
 <body>
     <div class="particles" id="particles-js"></div>
+    <div class="banner"></div>
     <div class="container">
         <nav class="nav-menu">
             <a href="#pricing" class="nav-item active">Pricing</a>
@@ -255,56 +269,16 @@
                         <ul class="features-list">
                             <li class="feature-tooltip" data-tooltip="All features from Basic plan">All Basic Features</li>
                             <li class="feature-tooltip" data-tooltip="Priority support queue">Priority Support</li>
-                            <li class="feature-tooltip" data-tooltip="Store up to 10GB of data">10GB Storage</li>
-                            <li class="feature-tooltip" data-tooltip="Advanced usage analytics">Advanced Analytics</li>
-                            <li class="feature-tooltip" data-tooltip="Priority email support">Priority Email Support</li>
-                            <li class="feature-tooltip" data-tooltip="Access to premium community features">Premium Community Access</li>
-                            <li class="feature-tooltip" data-tooltip="Access to our API">API Access</li>
-                        </ul>
-                        <button class="submit-btn">Get Started</button>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Enterprise Plan</h3>
-                        <div class="price">$199<span>/month</span></div>
-                        <ul class="features-list">
-                            <li class="feature-tooltip" data-tooltip="All features from Pro plan">All Pro Features</li>
-                            <li class="feature-tooltip" data-tooltip="24/7 dedicated support">24/7 Premium Support</li>
-                            <li class="feature-tooltip" data-tooltip="Unlimited storage space">Unlimited Storage</li>
-                            <li class="feature-tooltip" data-tooltip="Custom analytics dashboard">Custom Analytics</li>
-                            <li class="feature-tooltip" data-tooltip="Dedicated support team">Dedicated Support Team</li>
-                            <li class="feature-tooltip" data-tooltip="Custom integration options">Custom Integration</li>
-                            <li class="feature-tooltip" data-tooltip="Advanced security features">Advanced Security</li>
-                            <li class="feature-tooltip" data-tooltip="Service Level Agreement">SLA Guarantee</li>
-                        </ul>
-                        <button class="submit-btn">Contact Sales</button>
-                    </div>
-                </div>
-            </div>
-
-            <button class="compare-btn">Compare Plans</button>
-
-            <div class="social-links">
-                <!-- ... existing social links ... -->
-            </div>
-            
-            <div class="contact-form">
-                <!-- ... existing contact form ... -->
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Add interactivity
+        // Existing JavaScript remains the same
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // Add logic to switch between monthly/yearly pricing
             });
         });
 
         document.querySelector('.compare-btn').addEventListener('click', function() {
-            // Add logic to show comparison modal
             alert('Comparison feature coming soon!');
         });
     </script>
