@@ -7,92 +7,131 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ... existing styles ... */
-        
-        .pricing-section {
-            margin: 3rem 0;
-        }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .nav-menu {
+            display: flex;
+            justify-content: center;
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .pricing-card {
-            background: rgba(20, 20, 30, 0.9);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            backdrop-filter: blur(10px);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #00ffff;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-
-        .pricing-card h3 {
-            color: #00ffff;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
+        .nav-item {
             color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+        }
+
+        .nav-item.active {
+            background: #00ffff;
+            color: #000;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin: 1rem 0;
         }
 
-        .features-list {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
+        .toggle-btn:hover {
+            background: #00ffff;
+            color: #000;
         }
 
-        .features-list li {
-            margin: 0.5rem 0;
-            padding-left: 1.5rem;
+        .feature-tooltip {
             position: relative;
+            display: inline-block;
+            cursor: help;
         }
 
-        .features-list li:before {
-            content: "✓";
-            color: #00ffff;
+        .feature-tooltip:hover::after {
+            content: attr(data-tooltip);
             position: absolute;
-            left: 0;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        .compare-btn {
+            background: none;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .compare-btn:hover {
+            background: #00ffff;
+            color: #000;
         }
     </style>
 </head>
 <body>
     <div class="particles" id="particles-js"></div>
     <div class="container">
-        <div id="contact" class="page active">
+        <nav class="nav-menu">
+            <a href="#pricing" class="nav-item active">Pricing</a>
+            <a href="#features" class="nav-item">Features</a>
+            <a href="#faq" class="nav-item">FAQ</a>
+            <a href="#contact" class="nav-item">Contact</a>
+        </nav>
+
+        <div id="pricing" class="page active">
+            <h1 class="section-title">Choose Your Plan</h1>
+            
+            <div class="billing-toggle">
+                <button class="toggle-btn" data-billing="monthly">Monthly</button>
+                <button class="toggle-btn" data-billing="yearly">Yearly (Save 20%)</button>
+            </div>
+
             <div class="pricing-section">
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Basic Plan</h3>
                         <div class="price">$29<span>/month</span></div>
                         <ul class="features-list">
-                            <li>Basic Features</li>
-                            <li>24/7 Support</li>
-                            <li>1GB Storage</li>
-                            <li>Basic Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="Access to core platform features">Basic Features</li>
+                            <li class="feature-tooltip" data-tooltip="Round-the-clock customer support">24/7 Support</li>
+                            <li class="feature-tooltip" data-tooltip="Store up to 1GB of data">1GB Storage</li>
+                            <li class="feature-tooltip" data-tooltip="Basic usage statistics">Basic Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="Email support within 24 hours">Email Support</li>
+                            <li class="feature-tooltip" data-tooltip="Access to community forums">Community Access</li>
                         </ul>
                         <button class="submit-btn">Get Started</button>
                     </div>
                     <div class="pricing-card">
+                        <div class="popular-tag">Most Popular</div>
                         <h3>Pro Plan</h3>
                         <div class="price">$79<span>/month</span></div>
                         <ul class="features-list">
-                            <li>All Basic Features</li>
-                            <li>Priority Support</li>
-                            <li>10GB Storage</li>
-                            <li>Advanced Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="All features from Basic plan">All Basic Features</li>
+                            <li class="feature-tooltip" data-tooltip="Priority support queue">Priority Support</li>
+                            <li class="feature-tooltip" data-tooltip="Store up to 10GB of data">10GB Storage</li>
+                            <li class="feature-tooltip" data-tooltip="Advanced usage analytics">Advanced Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="Priority email support">Priority Email Support</li>
+                            <li class="feature-tooltip" data-tooltip="Access to premium community features">Premium Community Access</li>
+                            <li class="feature-tooltip" data-tooltip="Access to our API">API Access</li>
                         </ul>
                         <button class="submit-btn">Get Started</button>
                     </div>
@@ -100,15 +139,21 @@
                         <h3>Enterprise Plan</h3>
                         <div class="price">$199<span>/month</span></div>
                         <ul class="features-list">
-                            <li>All Pro Features</li>
-                            <li>24/7 Premium Support</li>
-                            <li>Unlimited Storage</li>
-                            <li>Custom Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="All features from Pro plan">All Pro Features</li>
+                            <li class="feature-tooltip" data-tooltip="24/7 dedicated support">24/7 Premium Support</li>
+                            <li class="feature-tooltip" data-tooltip="Unlimited storage space">Unlimited Storage</li>
+                            <li class="feature-tooltip" data-tooltip="Custom analytics dashboard">Custom Analytics</li>
+                            <li class="feature-tooltip" data-tooltip="Dedicated support team">Dedicated Support Team</li>
+                            <li class="feature-tooltip" data-tooltip="Custom integration options">Custom Integration</li>
+                            <li class="feature-tooltip" data-tooltip="Advanced security features">Advanced Security</li>
+                            <li class="feature-tooltip" data-tooltip="Service Level Agreement">SLA Guarantee</li>
                         </ul>
-                        <button class="submit-btn">Get Started</button>
+                        <button class="submit-btn">Contact Sales</button>
                     </div>
                 </div>
             </div>
+
+            <button class="compare-btn">Compare Plans</button>
 
             <div class="social-links">
                 <!-- ... existing social links ... -->
@@ -120,6 +165,20 @@
         </div>
     </div>
 
-    <!-- ... existing scripts ... -->
+    <script>
+        // Add interactivity
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Add logic to switch between monthly/yearly pricing
+            });
+        });
+
+        document.querySelector('.compare-btn').addEventListener('click', function() {
+            // Add logic to show comparison modal
+            alert('Comparison feature coming soon!');
+        });
+    </script>
 </body>
 </html>
