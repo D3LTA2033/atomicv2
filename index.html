@@ -12,6 +12,12 @@
             background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif?ex=683844f9&is=6836f379&hm=2ecb083f88b0cb0fa39c987dd9a65376d873673123f2dcc685d5b68a470f4786&=') no-repeat center center fixed;
             background-size: cover;
             color: white;
+            animation: backgroundSlower 20s linear infinite;
+        }
+
+        @keyframes backgroundSlower {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
         .container {
@@ -44,10 +50,24 @@
             color: white;
             cursor: pointer;
             transition: transform 0.3s;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
         }
 
         .nav-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+
+        h1 {
+            text-align: center;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+            animation: neonPulse 2s infinite;
+        }
+
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 10px rgba(138, 43, 226, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(138, 43, 226, 0.8), 0 0 30px rgba(138, 43, 226, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(138, 43, 226, 0.8); }
         }
 
         .plan-container {
@@ -58,17 +78,19 @@
         }
 
         .plan-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(5px);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            border: 1px solid rgba(138, 43, 226, 0.3);
         }
 
         .plan-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.8);
         }
 
         .plan-header {
@@ -80,6 +102,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #8A2BE2;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
         }
 
         .plan-features {
@@ -98,6 +121,20 @@
             position: absolute;
             left: 0;
             color: #00D632;
+            text-shadow: 0 0 10px rgba(0, 214, 50, 0.8);
+        }
+
+        .extra-features {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .extra-features h2 {
+            text-align: center;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
         }
 
         .payment-buttons {
@@ -116,18 +153,24 @@
             transition: transform 0.3s;
             font-size: 18px;
             text-decoration: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .paypal {
-            background: #0070ba;
+            background: rgba(0, 112, 186, 0.8);
         }
 
         .cashapp {
-            background: #00D632;
+            background: rgba(0, 214, 50, 0.8);
         }
 
         .discord {
-            background: #7289DA;
+            background: rgba(114, 137, 218, 0.8);
+        }
+
+        .payment-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
         .social-links {
@@ -138,16 +181,21 @@
         }
 
         .social-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             backdrop-filter: blur(5px);
             transition: transform 0.3s;
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(138, 43, 226, 0.3);
         }
 
         .social-card:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.8);
         }
 
         .credits {
@@ -155,6 +203,7 @@
             margin-top: 50px;
             font-size: 14px;
             opacity: 0.7;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
         }
 
         @keyframes fadeIn {
@@ -198,73 +247,28 @@
                         <div class="plan-price">$20 USD monthly<br>$40 lifetime</div>
                     </div>
                     <ul class="plan-features">
-                        <li>1 Concurrent</li>
-                        <li>60s Attack Time</li>
-                        <li>45s Cool-Down</li>
-                        <li>VIP: ❌</li>
-                        <li>Plan Duration: 31 Days</li>
-                    </ul>
-                </div>
-
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h2>Advanced</h2>
-                        <div class="plan-price">$45 USD monthly<br>$90 USD lifetime</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>1 Concurrent</li>
-                        <li>60s Attack Time</li>
-                        <li>30s Cool-Down</li>
-                        <li>VIP: ✅</li>
-                        <li>Plan Duration: 31 Days</li>
-                    </ul>
-                </div>
-
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h2>Atomic Home Holder</h2>
-                        <div class="plan-price">$25 USD monthly<br>$50 lifetime</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>3 Concurrents</li>
-                        <li>86400s Attack Time</li>
-                        <li>VIP: ✅</li>
-                        <li>Plan Duration: 31 Days</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="extra-features">
-                <h2>Extra Addons</h2>
-                <ul class="plan-features">
-                    <li>+1 Concurrent ~ $10USD/mo</li>
-                    <li>+60 seconds ~ $10USD/mo</li>
-                    <li>+raw addon ~ $30usd/mo</li>
-                </ul>
-            </div>
-
+            <h1>Atomic Prices</h1>
             <div class="payment-buttons">
-                <a href="https://www.paypal.me/NewAcc758" class="payment-btn paypal">PayPal</a>
-                <a href="https://cash.app/$demonoffdc" class="payment-btn cashapp">CashApp</a>
-                <a href="https://discord.gg/atomicservices" class="payment-btn discord">Discord</a>
+                <button class="payment-btn paypal">PayPal</button>
+                <button class="payment-btn cashapp">CashApp</button>
+                <button class="payment-btn discord">Discord</button>
             </div>
         </div>
 
         <div id="page2" class="page">
             <h1>Social Media</h1>
             <div class="social-links">
-                <a href="https://discord.gg/atomicservices" class="social-card">
+                <div class="social-card">
                     <h3>Discord</h3>
                     <p>Join our community</p>
-                </a>
-                <a href="https://www.instagram.com/lostlatex?igsh=MW9wOXA3NHhqNHI=" class="social-card">
+                </div>
+                <div class="social-card">
                     <h3>Instagram</h3>
                     <p>Follow us</p>
-                </a>
-                <a href="https://www.snapchat.com/add/sleeppy.demon?share_id=JZpXu3PEi6g&locale=en-US" class="social-card">
+                </div>
+                <div class="social-card">
                     <h3>Snapchat</h3>
                     <p>Add us</p>
-                </a>
                 </div>
             </div>
         </div>
