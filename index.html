@@ -13,7 +13,7 @@
         }
 
         body {
-            background: #1a1a2e;
+            background: transparent;
             color: #fff;
             min-height: 100vh;
             position: relative;
@@ -27,12 +27,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 48%, #2a2a4a 49%, #2a2a4a 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, #2a2a4a 49%, #2a2a4a 51%, transparent 52%);
-            background-size: 30px 30px;
-            opacity: 0.1;
+            background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif');
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
             pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -48,6 +48,7 @@
             height: 150px;
             margin: 0 auto 2rem;
             display: block;
+            opacity: 0;
         }
 
         .nav-buttons {
@@ -60,7 +61,7 @@
         .nav-btn {
             padding: 0.8rem 2rem;
             border: none;
-            background: #2a2a4a;
+            background: rgba(42, 42, 74, 0.8);
             color: #fff;
             border-radius: 5px;
             cursor: pointer;
@@ -68,7 +69,7 @@
         }
 
         .nav-btn:hover {
-            background: #3a3a5a;
+            background: rgba(58, 58, 90, 0.8);
             transform: translateY(-2px);
         }
 
@@ -126,7 +127,7 @@
 
         .plan-features li {
             padding: 0.5rem 0;
-            border-bottom: 1px solid #3a3a5a;
+            border-bottom: 1px solid rgba(58, 58, 90, 0.8);
             transition: all 0.3s ease;
         }
 
@@ -155,9 +156,9 @@
             transform: scale(1.05);
         }
 
-        .paypal { background: #0070ba; color: white; }
-        .cashapp { background: #00d632; color: white; }
-        .discord { background: #7289da; color: white; }
+        .paypal { background: rgba(0, 112, 186, 0.8); color: white; }
+        .cashapp { background: rgba(0, 214, 50, 0.8); color: white; }
+        .discord { background: rgba(114, 137, 218, 0.8); color: white; }
 
         .social-links {
             display: grid;
