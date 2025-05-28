@@ -212,4 +212,62 @@
         }
     </style>
 </head>
-// ... rest of the HTML remains the same ...
+<body>
+    <div class="container">
+        <h1>Atomic Prices</h1>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="showPage('pricing')">Pricing</button>
+            <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+        </div>
+
+        <div id="pricing" class="page active">
+            <div class="plan-container">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h2>Basic Plan</h2>
+                        <div class="plan-price">$10</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h2>Pro Plan</h2>
+                        <div class="plan-price">$20</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>All Basic Features</li>
+                        <li>Pro Feature 1</li>
+                        <li>Pro Feature 2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="page">
+            <div class="social-links">
+                <div class="social-card">
+                    <h2>Discord</h2>
+                    <p>Join our community</p>
+                </div>
+                <div class="social-card">
+                    <h2>Email</h2>
+                    <p>contact@example.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
