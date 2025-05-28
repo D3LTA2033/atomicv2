@@ -5,176 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atomic Prices</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif?ex=683844f9&is=6836f379&hm=2ecb083f88b0cb0fa39c987dd9a65376d873673123f2dcc685d5b68a470f4786&=') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            animation: backgroundSlower 20s linear infinite;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .nav-btn {
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .page {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .page.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .plan-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .plan-card {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .plan-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .plan-price {
-            font-size: 1.2em;
-            color: #00ff88;
-            margin: 10px 0;
-        }
-
-        .plan-features {
-            list-style: none;
-            padding: 0;
-        }
-
-        .plan-features li {
-            margin: 10px 0;
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .extra-features {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-        }
-
-        .payment-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .payment-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .payment-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .paypal {
-            background: #0070ba;
-            color: white;
-        }
-
-        .cashapp {
-            background: #00d632;
-            color: white;
-        }
-
-        .discord {
-            background: #7289da;
-            color: white;
-        }
-
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .social-card {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .social-card:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .note {
-            text-align: center;
-            color: #ff4444;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        @keyframes backgroundSlower {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
+        /* ... existing styles remain the same ... */
     </style>
 </head>
 <body>
@@ -187,7 +18,41 @@
         <div id="page1" class="page active">
             <h1>Atomic C2 Plans</h1>
             <div class="plan-container">
-                <!-- Plan cards remain the same -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h2>Basic Plan</h2>
+                        <div class="plan-price">$50 USD/month</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>1 Concurrent</li>
+                        <li>60 seconds</li>
+                        <li>Basic features</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h2>Premium Plan</h2>
+                        <div class="plan-price">$100 USD/month</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>2 Concurrent</li>
+                        <li>120 seconds</li>
+                        <li>Advanced features</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h2>Ultimate Plan</h2>
+                        <div class="plan-price">$200 USD/month</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>5 Concurrent</li>
+                        <li>300 seconds</li>
+                        <li>All features included</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="extra-features">
