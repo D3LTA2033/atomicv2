@@ -381,7 +381,7 @@
       <div class="nav-item" data-tab="contact">Contact</div>
     </nav>
     
-    <!-- Pricing Page -->
+    
     <div id="pricing" class="page active">
       <h1 class="section-title">Choose Your Plan</h1>
       <div class="billing-toggle">
@@ -439,7 +439,7 @@
       </div>
     </div>
     
-    <!-- Features Page -->
+
     <div id="features" class="page">
       <h1 class="section-title">Our Features</h1>
       
@@ -450,7 +450,7 @@
       
       <div class="feature-item">
         <h3 class="feature-title">Advanced Attack Methods</h3>
-        <p>Access a wide range of sophisticated techniques and methodologies to test and strengthen your security infrastructure. Our platform provides comprehensive tools for legitimate security testing and analysis.</p>
+        <p>Access a wide range of sophisticated techniques and Attack Methods to test and strengthen your security infrastructure. Our platform provides comprehensive tools for legitimate security testing and analysis.</p>
       </div>
       
       <div class="feature-item">
@@ -468,8 +468,8 @@
         <p>Monitor and analyze your activities with comprehensive real-time analytics. Gain valuable insights into performance metrics and usage patterns to optimize your operations and improve efficiency.</p>
       </div>
     </div>
+
     
-    <!-- FAQ Page -->
     <div id="faq" class="page">
       <h1 class="section-title">Frequently Asked Questions</h1>
       
@@ -499,7 +499,7 @@
       </div>
     </div>
     
-    <!-- Contact Page -->
+    
     <div id="contact" class="page">
       <h1 class="section-title">Contact Us</h1>
       <p style="text-align: center; margin-bottom: 2rem;">Connect with us on social media for support, updates, and to activate your subscription after payment.</p>
@@ -528,7 +528,7 @@
     </div>
   </div>
   
-  <!-- Payment Modal -->
+  
   <div id="paymentModal" class="modal">
     <div class="modal-content">
       <span class="close-modal">&times;</span>
@@ -557,20 +557,20 @@
   </div>
 
   <script>
-    // Tab navigation
+
     document.querySelectorAll('.nav-item').forEach(item => {
       item.addEventListener('click', () => {
-        // Remove active class from all tabs and pages
+     
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         
-        // Add active class to clicked tab and corresponding page
+     
         item.classList.add('active');
         document.getElementById(item.getAttribute('data-tab')).classList.add('active');
       });
     });
     
-    // Billing toggle
+
     document.querySelectorAll('.toggle-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -590,8 +590,7 @@
         }
       });
     });
-    
-    // Payment modal
+
     const modal = document.getElementById('paymentModal');
     const closeModal = document.querySelector('.close-modal');
     
@@ -620,7 +619,7 @@
       }
     });
     
-    // FAQ accordion
+   
     document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', () => {
         const answer = question.nextElementSibling;
