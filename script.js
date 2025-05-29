@@ -98,3 +98,8 @@ document.getElementById('dataForm').addEventListener('submit', async (e) => {
   }
 });
 
+fetch('/api/data', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data),
+});
