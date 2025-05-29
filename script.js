@@ -74,3 +74,27 @@ setInterval(() => {
   console.clear();
   console.log('%cStop trying to inspect!', 'color: red; font-size: 20px; font-weight: bold;');
 }, 1000);
+
+document.getElementById('dataForm').addEventListener('submit', async (e) => {
+  e.preventDefault(); // Stop form from submitting normally
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch('/api/data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    document.getElementById('response').textContent = `Server says: ${result.message}`;
+  } catch (error) {
+    document.getElementById('response').textContent = 'Error contacting server.';
+    console.error('Error:', error);
+  }
+});
+
