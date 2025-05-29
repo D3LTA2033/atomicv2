@@ -6,9 +6,72 @@
     <title>Atomic V2</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ... existing styles ... */
-        
-        /* Add new styles for modal */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-card h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card .features li {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .submit-btn {
+            background: none;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 0.5rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #00ffff;
+            color: #000;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -83,9 +146,31 @@
     </style>
 </head>
 <body>
-    <!-- ... existing HTML ... -->
+    <div class="container">
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Basic Plan</h3>
+                <div class="price">$10</div>
+                <ul class="features">
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+                <button class="submit-btn">Purchase</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Pro Plan</h3>
+                <div class="price">$20</div>
+                <ul class="features">
+                    <li>All Basic Features</li>
+                    <li>Pro Feature 1</li>
+                    <li>Pro Feature 2</li>
+                </ul>
+                <button class="submit-btn">Purchase</button>
+            </div>
+        </div>
+    </div>
     
-    <!-- Add modal HTML -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -112,9 +197,6 @@
     </div>
 
     <script>
-        // ... existing script ...
-
-        // Add modal functionality
         const modal = document.getElementById('paymentModal');
         const closeBtn = document.querySelector('.close-modal');
         const submitBtns = document.querySelectorAll('.submit-btn');
@@ -135,7 +217,6 @@
             }
         });
 
-        // Handle form submission
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -146,7 +227,6 @@
                 plan: e.target.closest('.pricing-card').querySelector('h3').textContent
             };
 
-            // Send to appropriate webhook based on plan
             const webhookUrl = formData.plan === 'Basic Plan' 
                 ? 'YOUR_BASIC_PLAN_WEBHOOK_URL'
                 : 'YOUR_PRO_PLAN_WEBHOOK_URL';
