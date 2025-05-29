@@ -6,289 +6,170 @@
     <title>Atomic V2</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: url('https://media.discordapp.net/attachments/1377030311770329088/1377066075291914351/Pre-comp_1_1.gif?ex=683844f9&is=6836f379&hm=2ecb083f88b0cb0fa39c987dd9a65376d873673123f2dcc685d5b68a470f4786&=') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .banner {
+        /* ... existing styles ... */
+        
+        /* Add new styles for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 200px;
-            background: url('https://cdn.discordapp.com/banners/1289619013672108165/a_59f657e051661a0b90b34915ee38280b.gif?size=2048') no-repeat center center;
-            background-size: cover;
-            border-radius: 10px;
-            margin-bottom: 2rem;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #00ffff;
-        }
-
-        .billing-toggle {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 2rem;
+        .modal-content {
             position: relative;
-            transition: transform 0.3s ease;
+            background: rgba(0, 0, 0, 0.9);
+            margin: 15% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
         }
 
-        .pricing-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .popular-tag {
+        .close-modal {
             position: absolute;
-            top: -12px;
-            right: 20px;
-            background: #00ffff;
-            color: #000;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .pricing-card h3 {
+            right: 1rem;
+            top: 1rem;
+            color: #00ffff;
+            cursor: pointer;
             font-size: 1.5rem;
+        }
+
+        .form-group {
             margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             color: #00ffff;
         }
 
-        .price {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: #888;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .features-list li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li::before {
-            content: "✓";
-            color: #00ffff;
-            margin-right: 0.5rem;
-        }
-
-        .submit-btn {
+        .form-group input {
             width: 100%;
-            background: #00ffff;
-            color: #000;
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #00cccc;
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .nav-item {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item:hover {
-            background: rgba(0, 255, 255, 0.1);
-            color: #00ffff;
-        }
-
-        .nav-item.active {
-            background: #00ffff;
-            color: #000;
-        }
-
-        .toggle-btn {
-            background: none;
-            border: 2px solid #00ffff;
-            color: #00ffff;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 1rem 0;
-        }
-
-        .toggle-btn:hover {
-            background: #00ffff;
-            color: #000;
-        }
-
-        .feature-tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-
-        .feature-tooltip:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
             padding: 0.5rem;
+            border: 1px solid #00ffff;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
             border-radius: 5px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            z-index: 3;
         }
 
-        .compare-btn {
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .payment-btn {
+            padding: 0.5rem;
+            border: 1px solid #00ffff;
             background: none;
-            border: 2px solid #00ffff;
             color: #00ffff;
-            padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 2rem;
         }
 
-        .compare-btn:hover {
+        .payment-btn:hover {
             background: #00ffff;
             color: #000;
-        }
-
-        @media (max-width: 768px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-menu {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="banner"></div>
-    <div class="container">
-        <nav class="nav-menu">
-            <a href="#pricing" class="nav-item active">Pricing</a>
-            <a href="#features" class="nav-item">Features</a>
-            <a href="#faq" class="nav-item">FAQ</a>
-            <a href="#contact" class="nav-item">Contact</a>
-        </nav>
+    <!-- ... existing HTML ... -->
+    
+    <!-- Add modal HTML -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="color: #00ffff; margin-bottom: 1rem;">Complete Your Purchase</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="discordUser">Discord Username</label>
+                    <input type="text" id="discordUser" required>
+                </div>
+                <div class="form-group">
+                    <label for="discordId">Discord ID</label>
+                    <input type="text" id="discordId" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact (Email/Instagram/Snapchat)</label>
+                    <input type="text" id="contact">
+                </div>
+                <div class="payment-options">
+                    <button type="button" class="payment-btn" onclick="window.open('https://www.paypal.me/NewAcc758', '_blank')">PayPal</button>
+                    <button type="button" class="payment-btn" onclick="window.open('https://cash.app/$demonoffdc', '_blank')">Cash App</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        <div id="pricing" class="page active">
-            <h1 class="section-title">Choose Your Plan</h1>
-            
-            <div class="billing-toggle">
-                <button class="toggle-btn" data-billing="monthly">Monthly</button>
-                <button class="toggle-btn" data-billing="yearly">Yearly (Save 20%)</button>
-            </div>
-
-            <div class="pricing-section">
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Basic Plan</h3>
-                        <div class="price">$29<span>/month</span></div>
-                        <ul class="features-list">
-                            <li class="feature-tooltip" data-tooltip="Access to core platform features">Basic Features</li>
-                            <li class="feature-tooltip" data-tooltip="Round-the-clock customer support">24/7 Support</li>
-                            <li class="feature-tooltip" data-tooltip="Store up to 1GB of data">1GB Storage</li>
-                            <li class="feature-tooltip" data-tooltip="Basic usage statistics">Basic Analytics</li>
-                            <li class="feature-tooltip" data-tooltip="Email support within 24 hours">Email Support</li>
-                            <li class="feature-tooltip" data-tooltip="Access to community forums">Community Access</li>
-                            <li class="feature-tooltip" data-tooltip="Access to community forums">Meduim API</li>
-                            <li class="feature-tooltip" data-tooltip="Access to community forums">Fully Changable Pass 2+ EURO's (ADD ON) if prefered safer.</li>
-                        </ul>
-                        <button class="submit-btn">Get Started</button>
-                    </div>
-                    <div class="pricing-card">
-                        <div class="popular-tag">Most Popular</div>
-                        <h3>Pro Plan</h3>
-                        <div class="price">$79<span>/month</span></div>
-                        <ul class="features-list">
-                            <li class="feature-tooltip" data-tooltip="All features from Basic plan">All Basic Features</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">Priority Support</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">Fastest API</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">More Power</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">More Features</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">More Methods</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">Longer Attacks</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">More Attack Methods</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">Less Cooldown Attacks</li>
-                            <li class="feature-tooltip" data-tooltip="Priority support queue">& Tons more Feautres</li>
     <script>
-        
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+        // ... existing script ...
+
+        // Add modal functionality
+        const modal = document.getElementById('paymentModal');
+        const closeBtn = document.querySelector('.close-modal');
+        const submitBtns = document.querySelectorAll('.submit-btn');
+
+        submitBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'block';
             });
         });
 
-        document.querySelector('.compare-btn').addEventListener('click', function() {
-            alert('Comparison feature coming soon!');
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                discordUser: document.getElementById('discordUser').value,
+                discordId: document.getElementById('discordId').value,
+                contact: document.getElementById('contact').value,
+                plan: e.target.closest('.pricing-card').querySelector('h3').textContent
+            };
+
+            // Send to appropriate webhook based on plan
+            const webhookUrl = formData.plan === 'Basic Plan' 
+                ? 'YOUR_BASIC_PLAN_WEBHOOK_URL'
+                : 'YOUR_PRO_PLAN_WEBHOOK_URL';
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Thank you for your purchase! We will contact you shortly.');
+                    modal.style.display = 'none';
+                } else {
+                    alert('There was an error processing your request. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error processing your request. Please try again.');
+            }
         });
     </script>
 </body>
