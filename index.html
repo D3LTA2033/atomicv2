@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atomic V2</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -172,6 +171,11 @@
       margin: 1rem 0;
     }
 
+    .toggle-btn.active {
+      background: #00ffff;
+      color: #000;
+    }
+
     .toggle-btn:hover {
       background: #00ffff;
       color: #000;
@@ -214,52 +218,6 @@
       color: #000;
     }
 
-    /* Payment Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-content {
-      background: rgba(0, 0, 0, 0.9);
-      color: #fff;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: 10% auto;
-      padding: 2rem;
-      text-align: center;
-      border: 1px solid #00ffff;
-    }
-
-    .close {
-      color: #00ffff;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #00cccc;
-    }
-
-    .payment-code {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.5rem;
-      border-radius: 5px;
-      margin: 0.5rem 0;
-      word-break: break-all;
-      font-family: monospace;
-    }
-
-    /* Features and FAQ pages */
     .page {
       display: none;
     }
@@ -268,14 +226,50 @@
       display: block;
     }
 
-    .features-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
     }
 
-    .feature-card {
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      color: #fff;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       padding: 1.5rem;
@@ -283,100 +277,86 @@
       transition: transform 0.3s ease;
     }
 
-    .feature-card:hover {
+    .social-card:hover {
       transform: translateY(-5px);
-      background: rgba(0, 255, 255, 0.1);
     }
 
-    .feature-icon {
-      font-size: 2.5rem;
-      color: #00ffff;
+    .social-card h3 {
+      font-size: 1.2rem;
       margin-bottom: 1rem;
+      color: #00ffff;
+    }
+
+    .social-card a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-card a:hover {
+      color: #00ffff;
+    }
+
+    .watermark {
+      position: fixed;
+      bottom: 5px;
+      right: 5px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.3);
+      text-align: right;
+      line-height: 1.2;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: #00ffff;
+    }
+
+    .faq-question.active::after {
+      content: "-";
+    }
+
+    .faq-answer {
+      display: none;
+      padding-top: 1rem;
+      color: #ccc;
+    }
+
+    .faq-answer.active {
+      display: block;
+    }
+
+    .feature-item {
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1.5rem;
     }
 
     .feature-title {
       font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: #00ffff;
-    }
-
-    /* FAQ section */
-    .faq-item {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 1.5rem;
       margin-bottom: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-      background: rgba(0, 255, 255, 0.1);
-    }
-
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-      color: #00ffff;
-    }
-
-    .faq-answer {
-      margin-top: 1rem;
-      display: none;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Contact section */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .contact-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      background: rgba(0, 255, 255, 0.1);
-    }
-
-    .contact-icon {
-      font-size: 2.5rem;
-      color: #00ffff;
-      margin-bottom: 1rem;
-    }
-
-    .contact-title {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: #00ffff;
-    }
-
-    .contact-link {
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .contact-link:hover {
       color: #00ffff;
     }
 
     @media (max-width: 768px) {
-      .pricing-grid, .features-container, .contact-grid {
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
 
@@ -395,12 +375,12 @@
   <div class="banner"></div>
   <div class="container">
     <nav class="nav-menu">
-      <div class="nav-item active" data-target="pricing">Pricing</div>
-      <div class="nav-item" data-target="features">Features</div>
-      <div class="nav-item" data-target="faq">FAQ</div>
-      <div class="nav-item" data-target="contact">Contact</div>
+      <div class="nav-item active" data-tab="pricing">Pricing</div>
+      <div class="nav-item" data-tab="features">Features</div>
+      <div class="nav-item" data-tab="faq">FAQ</div>
+      <div class="nav-item" data-tab="contact">Contact</div>
     </nav>
-
+    
     <!-- Pricing Page -->
     <div id="pricing" class="page active">
       <h1 class="section-title">Choose Your Plan</h1>
@@ -412,8 +392,11 @@
         <div class="pricing-grid">
           <div class="pricing-card">
             <h3>Basic Plan</h3>
-            <div class="price" data-monthly="29" data-yearly="278">
+            <div class="price monthly-price">
               $29<span>/month</span>
+            </div>
+            <div class="price yearly-price" style="display: none;">
+              $278<span>/year</span>
             </div>
             <ul class="features-list">
               <li class="feature-tooltip" data-tooltip="Access to core platform features">Basic Features</li>
@@ -423,7 +406,7 @@
               <li class="feature-tooltip" data-tooltip="Email support within 24 hours">Email Support</li>
               <li class="feature-tooltip" data-tooltip="Access to community forums">Community Access</li>
               <li class="feature-tooltip" data-tooltip="Medium speed API access">Medium API</li>
-              <li class="feature-tooltip" data-tooltip="Optional safer password options">Fully Changeable Pass 2+ EURO's (ADD ON) if preferred safer</li>
+              <li class="feature-tooltip" data-tooltip="Option for enhanced security">Fully Changable Pass 2+ EURO's (ADD ON) if preferred safer</li>
             </ul>
             <button class="submit-btn" data-plan="Basic Plan" data-price="29">Get Started</button>
           </div>
@@ -432,20 +415,23 @@
               Most Popular
             </div>
             <h3>Pro Plan</h3>
-            <div class="price" data-monthly="79" data-yearly="758">
+            <div class="price monthly-price">
               $79<span>/month</span>
+            </div>
+            <div class="price yearly-price" style="display: none;">
+              $758<span>/year</span>
             </div>
             <ul class="features-list">
               <li class="feature-tooltip" data-tooltip="All features from Basic plan">All Basic Features</li>
               <li class="feature-tooltip" data-tooltip="Priority support queue">Priority Support</li>
-              <li class="feature-tooltip" data-tooltip="Highest speed API access">Fastest API</li>
-              <li class="feature-tooltip" data-tooltip="Increased computational power">More Power</li>
-              <li class="feature-tooltip" data-tooltip="Additional advanced features">More Features</li>
+              <li class="feature-tooltip" data-tooltip="Faster API response times">Fastest API</li>
+              <li class="feature-tooltip" data-tooltip="More computing resources">More Power</li>
+              <li class="feature-tooltip" data-tooltip="Advanced platform capabilities">More Features</li>
               <li class="feature-tooltip" data-tooltip="Additional attack methods">More Methods</li>
-              <li class="feature-tooltip" data-tooltip="Extended duration attacks">Longer Attacks</li>
-              <li class="feature-tooltip" data-tooltip="Additional attack methods">More Attack Methods</li>
-              <li class="feature-tooltip" data-tooltip="Reduced time between attacks">Less Cooldown Attacks</li>
-              <li class="feature-tooltip" data-tooltip="Access to exclusive features">& Tons more Features</li>
+              <li class="feature-tooltip" data-tooltip="Extended attack duration">Longer Attacks</li>
+              <li class="feature-tooltip" data-tooltip="Expanded attack options">More Attack Methods</li>
+              <li class="feature-tooltip" data-tooltip="Reduced cooldown between attacks">Less Cooldown Attacks</li>
+              <li class="feature-tooltip" data-tooltip="Many additional capabilities">& Tons more Features</li>
             </ul>
             <button class="submit-btn" data-plan="Pro Plan" data-price="79">Get Started</button>
           </div>
@@ -456,182 +442,196 @@
     <!-- Features Page -->
     <div id="features" class="page">
       <h1 class="section-title">Our Features</h1>
-      <div class="features-container">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <h3 class="feature-title">High Performance</h3>
-          <p>Experience lightning-fast speeds with our optimized infrastructure.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="feature-title">Advanced Security</h3>
-          <p>Stay protected with our state-of-the-art security protocols.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3 class="feature-title">API Access</h3>
-          <p>Seamlessly integrate with our powerful API for custom solutions.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="feature-title">Real-time Analytics</h3>
-          <p>Monitor performance and track results with detailed analytics.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <h3 class="feature-title">24/7 Availability</h3>
-          <p>Our services are available around the clock with minimal downtime.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3 class="feature-title">Community Support</h3>
-          <p>Join our active community for tips, tricks, and help.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-server"></i>
-          </div>
-          <h3 class="feature-title">Multiple Methods</h3>
-          <p>Access a variety of specialized methods for different purposes.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-rocket"></i>
-          </div>
-          <h3 class="feature-title">Scalable Solutions</h3>
-          <p>Our platform grows with your needs, from basic to enterprise-level.</p>
-        </div>
+      
+      <div class="feature-item">
+        <h3 class="feature-title">High-Performance API</h3>
+        <p>Our industry-leading API provides lightning-fast response times and robust functionality to meet all your needs. With scalable architecture and optimized code, you'll experience minimal latency and maximum uptime.</p>
+      </div>
+      
+      <div class="feature-item">
+        <h3 class="feature-title">Advanced Attack Methods</h3>
+        <p>Access a wide range of sophisticated techniques and methodologies to test and strengthen your security infrastructure. Our platform provides comprehensive tools for legitimate security testing and analysis.</p>
+      </div>
+      
+      <div class="feature-item">
+        <h3 class="feature-title">24/7 Support</h3>
+        <p>Our dedicated support team is available around the clock to assist with any questions or issues you may encounter. Whether it's technical assistance or general inquiries, we're always here to help.</p>
+      </div>
+      
+      <div class="feature-item">
+        <h3 class="feature-title">Customizable Security</h3>
+        <p>Tailor your security settings to meet your specific requirements. Our platform offers flexible configuration options and advanced customization to ensure your experience is perfectly aligned with your needs.</p>
+      </div>
+      
+      <div class="feature-item">
+        <h3 class="feature-title">Real-Time Analytics</h3>
+        <p>Monitor and analyze your activities with comprehensive real-time analytics. Gain valuable insights into performance metrics and usage patterns to optimize your operations and improve efficiency.</p>
       </div>
     </div>
     
     <!-- FAQ Page -->
     <div id="faq" class="page">
       <h1 class="section-title">Frequently Asked Questions</h1>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            How do I get started? <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Getting started is simple. Choose a plan that fits your needs, make a payment using one of our supported methods, and then contact us through one of our social media channels with proof of payment. We'll set up your account right away.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            What payment methods do you accept? <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            We accept various payment methods including PayPal, Bitcoin (BTC), Ethereum (ETH), and Cash App. After payment, you'll need to provide proof of transaction to activate your account.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            How long does it take to activate my account? <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Once we receive your payment confirmation, your account is typically activated within 1-2 hours. For faster activation, please contact us on Discord.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            Can I upgrade my plan later? <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Yes, you can upgrade your plan at any time. You'll only need to pay the difference between your current plan and the new one. Contact our support team to process your upgrade.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            What kind of support do you offer? <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            We offer 24/7 support through our Discord channel. Pro plan users get priority support with faster response times.
-          </div>
-        </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What payment methods do you accept?</div>
+        <div class="faq-answer">We accept various payment methods including PayPal, Bitcoin (BTC), Ethereum (ETH), and Cash App. After payment, please contact us via one of our social media channels with proof of payment to activate your plan.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">How do I activate my subscription after payment?</div>
+        <div class="faq-answer">After completing your payment, please contact us through Discord, Instagram, or Snapchat with a screenshot of your payment receipt. Our team will verify your payment and activate your subscription promptly.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What's the difference between Basic and Pro plans?</div>
+        <div class="faq-answer">The Pro plan offers significantly enhanced capabilities including faster API access, more attack methods, longer attack durations, reduced cooldown times, priority support, and many additional premium features not available in the Basic plan.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Can I upgrade my plan later?</div>
+        <div class="faq-answer">Yes, you can upgrade from Basic to Pro at any time. Contact our support team through any of our social media channels, and we'll assist you with the upgrade process and prorate any remaining time on your current subscription.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Do you offer refunds?</div>
+        <div class="faq-answer">We generally don't offer refunds once a subscription has been activated. However, if you experience significant issues with our service, please contact our support team, and we'll work to resolve your concerns on a case-by-case basis.</div>
       </div>
     </div>
     
     <!-- Contact Page -->
     <div id="contact" class="page">
       <h1 class="section-title">Contact Us</h1>
-      <p style="text-align: center; margin-bottom: 2rem;">
-        Connect with us on social media for support, updates, and to claim your account after payment.
-      </p>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fab fa-discord"></i>
-          </div>
-          <h3 class="contact-title">Discord</h3>
-          <p>Join our server for support and community</p>
-          <a href="https://discord.gg/atomicservices" class="contact-link" target="_blank">discord.gg/atomicservices</a>
+      <p style="text-align: center; margin-bottom: 2rem;">Connect with us on social media for support, updates, and to activate your subscription after payment.</p>
+      
+      <div class="social-grid">
+        <div class="social-card">
+          <h3>Discord</h3>
+          <a href="https://discord.gg/atomicservices" target="_blank">Join Our Server</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem;">Get instant support and connect with our community</p>
         </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fab fa-instagram"></i>
-          </div>
-          <h3 class="contact-title">Instagram</h3>
-          <p>Follow us for updates and news</p>
-          <a href="https://www.instagram.com/lostlatex?igsh=MW9wOXA3NHhqNHI=" class="contact-link" target="_blank">@lostlatex</a>
+        
+        <div class="social-card">
+          <h3>Instagram</h3>
+          <a href="https://www.instagram.com/lostlatex?igsh=MW9wOXA3NHhqNHI=" target="_blank">Follow Us</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem;">Stay updated with our latest news and announcements</p>
         </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fab fa-snapchat"></i>
-          </div>
-          <h3 class="contact-title">Snapchat</h3>
-          <p>Add us for direct communication</p>
-          <a href="https://www.snapchat.com/add/sleeppy.demon?share_id=JZpXu3PEi6g&locale=en-US" class="contact-link" target="_blank">sleeppy.demon</a>
+        
+        <div class="social-card">
+          <h3>Snapchat</h3>
+          <a href="https://www.snapchat.com/add/sleeppy.demon?share_id=JZpXu3PEi6g&locale=en-US" target="_blank">Add Us</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem;">Quick communication and support</p>
         </div>
       </div>
-      <p style="text-align: center; margin-top: 2rem; color: #00ffff;">
-        <strong>Important:</strong> After making a payment, please add us on one of the social platforms above and provide proof of payment to activate your account.
-      </p>
+      
+      <p style="text-align: center; margin-top: 2rem; color: #00ffff;">After payment, please add us on one of these platforms and show proof to claim your subscription.</p>
     </div>
   </div>
-
+  
   <!-- Payment Modal -->
   <div id="paymentModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 style="color: #00ffff; margin-bottom: 1.5rem;">Choose a Payment Method</h2>
-      <p><strong>Plan:</strong> <span id="modalPlan">Basic Plan</span></p>
-      <p><strong>Price:</strong> $<span id="modalPrice">29</span></p>
-      <div style="margin: 1.5rem 0;">
-        <p><strong>PayPal:</strong></p>
-        <div class="payment-code">https://www.paypal.me/NewAcc758</div>
-        
-        <p><strong>Bitcoin (BTC):</strong></p>
-        <div class="payment-code">bc1pw23g6uhc0zeru5j6x8pm9nyfgwknz5kctph9dmknazzjlcwrttqs68kuk8</div>
-        
-        <p><strong>Ethereum (ETH):</strong></p>
-        <div class="payment-code">0xeE16760a0F7b703B0f664e1da0A5207599F5f5B2</div>
-        
-        <p><strong>Cash App:</strong></p>
-        <div class="payment-code">https://cash.app/$demonoffdc</div>
-      </div>
-      <p style="font-size: 0.9rem; margin-top: 1rem;">
-        After sending payment, please contact us via Discord, Instagram, or Snapchat with a screenshot of your payment and your email to activate your plan.
-      </p>
+      <span class="close-modal">&times;</span>
+      <h2 style="color: #00ffff; text-align: center; margin-bottom: 1.5rem;">Choose a Payment Method</h2>
+      <div id="planDetails" style="text-align: center; margin-bottom: 1.5rem;"></div>
+      
+      <p><strong>PayPal:</strong><br>
+      <code style="background: rgba(255,255,255,0.1); padding: 0.3rem; border-radius: 3px; display: block; margin: 0.5rem 0;">https://www.paypal.me/NewAcc758</code></p>
+      
+      <p><strong>Bitcoin (BTC):</strong><br>
+      <code style="background: rgba(255,255,255,0.1); padding: 0.3rem; border-radius: 3px; display: block; margin: 0.5rem 0; word-break: break-all;">bc1pw23g6uhc0zeru5j6x8pm9nyfgwknz5kctph9dmknazzjlcwrttqs68kuk8</code></p>
+      
+      <p><strong>Ethereum (ETH):</strong><br>
+      <code style="background: rgba(255,255,255,0.1); padding: 0.3rem; border-radius: 3px; display: block; margin: 0.5rem 0;">0xeE16760a0F7b703B0f664e1da0A5207599F5f5B2</code></p>
+      
+      <p><strong>Cash App:</strong><br>
+      <code style="background: rgba(255,255,255,0.1); padding: 0.3rem; border-radius: 3px; display: block; margin: 0.5rem 0;">https://cash.app/$demonoffdc</code></p>
+      
+      <p style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">After sending payment, please contact us via Discord, Instagram, or Snapchat with a screenshot and your email to activate your plan.</p>
     </div>
+  </div>
+  
+  <div class="watermark">
+    made by dominusnyx<br>
+    Protected by /inroot corporation
   </div>
 
   <script>
     // Tab navigation
     document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', function() {
-        // Remove active class from all tabs
+      item.addEventListener('click', () => {
+        // Remove active class from all tabs and pages
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding page
+        item.classList.add('active');
+        document.getElementById(item.getAttribute('data-tab')).classList.add('active');
+      });
+    });
+    
+    // Billing toggle
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const billing = this.getAttribute('data-billing');
+        if (billing === 'monthly') {
+          document.querySelectorAll('.monthly-price').forEach(price => price.style.display = 'block');
+          document.querySelectorAll('.yearly-price').forEach(price => price.style.display = 'none');
+          document.querySelectorAll('.submit-btn[data-plan="Basic Plan"]').forEach(btn => btn.setAttribute('data-price', '29'));
+          document.querySelectorAll('.submit-btn[data-plan="Pro Plan"]').forEach(btn => btn.setAttribute('data-price', '79'));
+        } else {
+          document.querySelectorAll('.monthly-price').forEach(price => price.style.display = 'none');
+          document.querySelectorAll('.yearly-price').forEach(price => price.style.display = 'block');
+          document.querySelectorAll('.submit-btn[data-plan="Basic Plan"]').forEach(btn => btn.setAttribute('data-price', '278'));
+          document.querySelectorAll('.submit-btn[data-plan="Pro Plan"]').forEach(btn => btn.setAttribute('data-price', '758'));
+        }
+      });
+    });
+    
+    // Payment modal
+    const modal = document.getElementById('paymentModal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    document.querySelectorAll('.submit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const plan = btn.getAttribute('data-plan');
+        const price = btn.getAttribute('data-price');
+        const billing = document.querySelector('.toggle-btn.active').getAttribute('data-billing');
+        
+        document.getElementById('planDetails').innerHTML = `
+          <p>You selected: <strong>${plan}</strong></p>
+          <p>Price: <strong>$${price}</strong> ${billing === 'monthly' ? '/month' : '/year'}</p>
+        `;
+        
+        modal.classList.add('active');
+      });
+    });
+    
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+    
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        question.classList.toggle('active');
+        answer.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+  
         document.querySelectorAll('.nav-item').forEach(tab => {
           tab.classList.remove('active');
         });
@@ -716,4 +716,3 @@
   </script>
 </body>
 </html>
-  
