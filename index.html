@@ -224,6 +224,27 @@
         font-size: 2rem;
       }
     }
+
+    /* Floating Discord Button */
+    .discord-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      background-color: #7289da;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .discord-button:hover {
+      background-color: #5b6eae;
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -286,6 +307,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Floating Discord Button -->
+  <a href="https://discord.gg/your-invite-code" class="discord-button" target="_blank">Join Discord</a>
 
   <script>
     document.querySelectorAll('.toggle-btn').forEach(btn => {
